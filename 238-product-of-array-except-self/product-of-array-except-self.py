@@ -1,28 +1,27 @@
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
-        prefix = [1] * len(nums)
-        suffix = [1] * len(nums)
-
+        #prefix/suffix i -> exclusive range in order to represent exclusion at boundaries
+        prefix = [1] * (len(nums) + 1)
+        suffix = [1] * (len(nums) + 1)
+        
+        #build array
         carry = 1
-        for pos, num in enumerate(nums):
-            prefix[pos] = carry * num
+        for idx, num in enumerate(nums):
             carry *= num
-
-        prefix.insert(0, 1)
+            prefix[idx + 1] = carry
         
         carry = 1
         for pos in range(len(nums) - 1, -1, -1):
-            suffix[pos] = carry * nums[pos]
+            suffix[pos] = carry
             carry *= nums[pos]
         
-        suffix.append(1)
         
-        res = [0] * len(nums)
-        for pos in range(len(nums)):
-            res[pos] = prefix[pos] * suffix[pos + 1]
+        print(prefix)
+        print(suffix)
         
-        return res
-            
-            
+        return [prefix[i] * suffix[i] for i in range(len(nums))]
+
+
+
 
         
