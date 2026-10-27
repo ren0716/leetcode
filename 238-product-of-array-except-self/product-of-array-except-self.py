@@ -15,10 +15,6 @@ class Solution:
             suffix[pos] = carry
             carry *= nums[pos]
         
-        
-        print(prefix)
-        print(suffix)
-        
         return [prefix[i] * suffix[i] for i in range(len(nums))]
 
 
