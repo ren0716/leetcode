@@ -16,9 +16,6 @@ class Solution:
         while left <= right:
             highest = int(x // (right))
             lowest = int((x % left) // (left // 10))
-            print(highest)
-            print(lowest)
-            print(x)
             if highest != lowest:
                 return False
             #update left, right, x
